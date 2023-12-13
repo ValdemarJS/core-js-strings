@@ -11,7 +11,7 @@
  * @param {string} value - The input string to calculate the length of.
  * @return {number} - The length of the string.
  *
- * @example
+ * @examplenpm
  *   getStringLength('aaaaa') => 5
  *   getStringLength('b') => 1
  *   getStringLength('') => 0
@@ -19,8 +19,8 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(string) {
+  return typeof string === 'string' ? string.length : '0';
 }
 
 /**
@@ -37,8 +37,11 @@ function getStringLength(/* value */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (typeof value === 'string' || value instanceof String) {
+    return true;
+  }
+  return false;
 }
 
 /**
