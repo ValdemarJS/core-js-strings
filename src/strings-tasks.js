@@ -348,14 +348,10 @@ function isPalindrome(str) {
  */
 function findLongestWord(str) {
   const words = str.split(' ');
-  let maxLength = 0;
-  for (let i = 0; i < words.length; i += 1) {
-    if (words[i].length > maxLength) {
-      maxLength = words[i].length;
-    }
-  }
-
-  return maxLength;
+  const wordsLength = words.map((item) => item.length);
+  const biggestItem = Math.max(...wordsLength);
+  const result = words.find((item) => item.length === biggestItem);
+  return result;
 }
 
 /**
@@ -368,10 +364,10 @@ function findLongestWord(str) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const result = str.split('').reverse().join('');
+  return result.split(' ').reverse().join(' ');
 }
-
 /**
  * Inverts the case of each character in the given string.
  *
@@ -383,8 +379,12 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const strArr = Array.from(str);
+  const result = strArr.map((e) =>
+    e === e.toUpperCase() ? e.toLowerCase() : e.toUpperCase()
+  );
+  return result.join('');
 }
 
 /**
@@ -400,8 +400,9 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  const fullName = firstName.concat(' ', lastName);
+  return `Hello, ${fullName}!`;
 }
 
 /**
@@ -414,8 +415,10 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const fullName = value.split(' ');
+  const result = fullName[1].concat(' ', fullName[2]);
+  return result.split('!').join('');
 }
 
 /**
@@ -429,8 +432,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.substring(1, str.length - 1);
 }
 
 /**
@@ -448,8 +451,9 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const strArr = str.split(';');
+  return strArr;
 }
 
 /**
@@ -468,8 +472,13 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(message) {
+  const originalAlpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const cipher = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
+  return message.replace(
+    /[a-z]/gi,
+    (letter) => cipher[originalAlpha.indexOf(letter)]
+  );
 }
 
 /**
@@ -496,8 +505,65 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cards = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  let result;
+  cards.forEach((item) =>
+    item === value ? (result = cards.indexOf(item)) : '');
+  return result;
 }
 
 module.exports = {
