@@ -561,8 +561,8 @@ function getCardId(value) {
     'K♠',
   ];
   let result;
-  cards.forEach((item) =>
-    item === value ? (result = cards.indexOf(item)) : '');
+  cards.map((item) =>
+    item === value ? result = cards.indexOf(item) : '');
   return result;
 }
 
